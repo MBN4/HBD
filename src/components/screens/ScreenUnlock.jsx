@@ -1,74 +1,90 @@
 import React, { useState } from 'react';
-import { Sparkles, Home } from 'lucide-react';
+import { Sparkles, Home, HelpCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
+const ROAST_MESSAGES = [
+  "Wrong! Really Esh? Think about the cute little creature I always call you...",
+  "Nope! Are you seriously this bad at guessing your own nickname? 😭",
+  "Incorrect! Hint: It lives in the snow, waddles around, and is 100% adorable 🐧",
+  "Still wrong! Starts with 'P' and ends with 'enguin'... can it get any easier?",
+  "Come on, Birthday Queen! It's literally your official spirit animal...",
+  "Nice try, but nope! Think: cold ice, cute waddle, black & white cutie!"
+];
+
 export default function ScreenUnlock({ onUnlocked, onBack }) {
-  const [name, setName] = useState('');
-  const [error, setError] = useState(false);
+  const [input, setInput] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [shake, setShake] = useState(false);
+  const [attempts, setAttempts] = useState(0);
 
   const handleUnlock = (e) => {
     e.preventDefault();
-    if (name.trim().toLowerCase() === 'esha' || name.trim().length > 0) {
+    const cleaned = input.trim().toLowerCase();
+
+    if (cleaned === 'penguin') {
       confetti({
-        particleCount: 140,
-        spread: 85,
+        particleCount: 150,
+        spread: 90,
         origin: { y: 0.6 },
-        colors: ['#FF7597', '#FFD700', '#FFD5DF', '#FFFFFF']
+        colors: ['#FF7597', '#FFD700', '#FFD5DF', '#FFFFFF', '#6EC1E4']
       });
       onUnlocked();
     } else {
-      setError(true);
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      const nextRoast = ROAST_MESSAGES[attempts % ROAST_MESSAGES.length];
+      setErrorMsg(nextRoast);
+      setAttempts((prev) => prev + 1);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[82vh] px-4 text-center max-w-md mx-auto animate-screen-in">
-      <div className="w-28 h-28 sm:w-36 sm:h-36 mb-4 animate-float-slow flex items-center justify-center">
-        <img
-          src="https://media.tenor.com/eBwP6q3bZg4AAAAi/hello-kitty.gif"
-          alt="Hello Kitty"
-          className="w-full h-full object-contain drop-shadow-md"
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
-        />
-        <div className="text-7xl hidden">🎂🎀</div>
+    <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 text-center max-w-lg mx-auto animate-screen-in select-none my-auto">
+      <div className="w-28 h-28 sm:w-36 sm:h-36 mb-2 animate-float-slow flex items-center justify-center">
       </div>
 
-      <h2 className="text-3xl sm:text-4xl font-bold text-[#8A2846] mb-1 font-cute">
-        One last birthday surprise...
+      <h2 className="text-3xl sm:text-5xl font-bold text-[#8A2846] mb-1 font-cute tracking-tight">
+        One Last Surprise...
       </h2>
-      <p className="text-xs sm:text-sm text-[#B3526D] mb-6">
-        Type your name to unlock the final birthday blessings
+      <p className="text-xs sm:text-sm text-[#B3526D] mb-6 font-medium">
+        Enter the secret nickname to unlock your final birthday blessing!
       </p>
 
-      <form onSubmit={handleUnlock} className="w-full space-y-4">
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-            setError(false);
-          }}
-          placeholder="Enter your name (e.g. ESHA)"
-          className="w-full px-6 py-3.5 rounded-full border-2 border-[#FFCCD8] bg-white text-center font-bold text-[#8A2846] placeholder-[#DF9AA9] focus:outline-none focus:border-[#FF7597] shadow-inner text-base tracking-widest uppercase transition-all"
-        />
+      <form onSubmit={handleUnlock} className={`w-full max-w-sm space-y-4 ${shake ? 'animate-bounce' : ''}`}>
+        <div className="relative">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => {
+              setInput(e.target.value);
+              if (errorMsg) setErrorMsg('');
+            }}
+            placeholder="TYPE SECRET PASSCODE..."
+            className="w-full px-6 py-4 rounded-full border-2 border-[#FFCCD8] bg-white text-center font-bold text-[#8A2846] placeholder-[#DF9AA9] focus:outline-none focus:border-[#FF7597] shadow-inner text-sm sm:text-base tracking-widest uppercase transition-all"
+          />
+        </div>
 
-        {error && (
-          <p className="text-xs text-red-500 font-bold">
-            Please enter your name to unlock! 🎂
-          </p>
+        {errorMsg && (
+          <div className="p-3.5 bg-[#FFF0F3] border-2 border-[#FFB8C7] rounded-2xl text-xs text-[#8A2846] font-bold leading-relaxed shadow-sm animate-screen-in">
+            😂 {errorMsg}
+          </div>
         )}
 
         <button
           type="submit"
-          className="w-full btn-pink py-3.5 text-base uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full btn-pink py-3.5 text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:scale-105 transition-all"
         >
           <Sparkles className="w-4 h-4" />
-          <span>UNLOCK BIRTHDAY BLESSINGS</span>
+          <span>UNLOCK BIRTHDAY SURPRISE</span>
         </button>
       </form>
+
+      {attempts >= 2 && (
+        <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] text-[#B3526D] bg-white/70 px-3.5 py-1.5 rounded-full border border-[#FFCCD8]">
+          <HelpCircle className="w-3.5 h-3.5 text-[#FF7597]" />
+          <span>Need a hint? What do I always call you, Esh? 🐧</span>
+        </div>
+      )}
 
       <button
         onClick={onBack}

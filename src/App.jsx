@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FloatingHearts from './components/FloatingHearts';
+import FloatingBalloons from './components/FloatingBalloons';
 import MusicButton from './components/MusicButton';
 import ScreenIntro from './components/screens/ScreenIntro';
 import ScreenHub from './components/screens/ScreenHub';
@@ -8,6 +8,7 @@ import ScreenMemories from './components/screens/ScreenMemories';
 import ScreenLetter from './components/screens/ScreenLetter';
 import ScreenUnlock from './components/screens/ScreenUnlock';
 import ScreenFuturePlans from './components/screens/ScreenFuturePlans';
+import ScreenCakeFinale from './components/screens/ScreenCakeFinale';
 import ScreenQuiz from './components/screens/ScreenQuiz';
 import ScreenMemoryGame from './components/screens/ScreenMemoryGame';
 
@@ -16,7 +17,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen w-full bg-[#FFE6EC] flex items-center justify-center p-3 sm:p-6 overflow-hidden">
-      <FloatingHearts />
+      <FloatingBalloons />
       <MusicButton />
 
       <main className="relative z-10 w-full max-w-5xl">
@@ -34,7 +35,13 @@ export default function App() {
           />
         )}
         {screen === 'future-plans' && (
-          <ScreenFuturePlans onBack={() => setScreen('hub')} />
+          <ScreenFuturePlans
+            onNext={() => setScreen('cake-finale')}
+            onBack={() => setScreen('hub')}
+          />
+        )}
+        {screen === 'cake-finale' && (
+          <ScreenCakeFinale onBack={() => setScreen('hub')} />
         )}
       </main>
     </div>

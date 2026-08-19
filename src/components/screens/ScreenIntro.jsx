@@ -21,21 +21,19 @@ export default function ScreenIntro({ onAccept }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[82vh] px-4 text-center animate-screen-in">
-      <div className="w-36 h-36 sm:w-44 sm:h-44 mb-4 animate-float-slow flex items-center justify-center">
-        <img
-          src="https://media.tenor.com/79uV7l_w_OIAAAAi/cute-cat.gif"
-          alt="Cute cat blush"
-          className="w-full h-full object-contain drop-shadow-md"
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
+    <div className="relative flex flex-col items-center justify-center min-h-[85vh] px-4 text-center select-none animate-screen-in">
+      <div className="w-72 sm:w-96 md:w-[420px] aspect-[4/3] mb-2 animate-float-slow flex items-center justify-center relative">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-contain mix-blend-multiply [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_80%)]"
+          src="/intro-bg.mp4"
         />
-        <div className="text-8xl hidden">🎂🎉</div>
       </div>
 
-      <p className="text-base sm:text-lg text-[#B3526D] font-medium tracking-wide mb-1">
+      <p className="text-base sm:text-lg text-[#B3526D] font-semibold tracking-wide mb-1">
         Happy Birthday, Esha! 🎂✨
       </p>
 
@@ -46,7 +44,7 @@ export default function ScreenIntro({ onAccept }) {
       <div className="relative flex items-center justify-center gap-4 sm:gap-6 w-full max-w-sm">
         <button
           onClick={handleYes}
-          className="btn-pink px-8 py-3.5 text-base sm:text-lg"
+          className="btn-pink px-8 py-3.5 text-base sm:text-lg cursor-pointer"
         >
           YES PLEASE 🎁
         </button>
@@ -55,7 +53,7 @@ export default function ScreenIntro({ onAccept }) {
           onMouseEnter={dodgeNo}
           onClick={dodgeNo}
           style={{ transform: `translate(${noPos.x}px, ${noPos.y}px)` }}
-          className="btn-light-pink px-6 py-3.5 text-sm sm:text-base transition-transform duration-200"
+          className="btn-light-pink px-6 py-3.5 text-sm sm:text-base transition-transform duration-200 cursor-pointer shadow-sm"
         >
           NO THANKS
         </button>

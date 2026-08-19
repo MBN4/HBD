@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Music, Volume2, VolumeX } from 'lucide-react';
 
 export default function MusicButton() {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef(null);
+  const playingRef = useRef(playing);
+  playingRef.current = playing;
 
   const toggleMusic = () => {
     if (!audioRef.current) return;
@@ -14,6 +16,17 @@ export default function MusicButton() {
     }
     setPlaying(!playing);
   };
+
+  useEffect(() => {
+    const startForFinale = () => {
+      if (playingRef.current || !audioRef.current) return;
+      audioRef.current.play()
+        .then(() => setPlaying(true))
+        .catch(() => {});
+    };
+    window.addEventListener('birthday-music-cue', startForFinale);
+    return () => window.removeEventListener('birthday-music-cue', startForFinale);
+  }, []);
 
   return (
     <>

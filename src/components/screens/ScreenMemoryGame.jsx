@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Home, RotateCcw, Trophy, Gift, Star, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-const ICONS = ['🎂', '🌸', '💖', '🎁', '🐧', '👑'];
+const GAME_IMAGES = [
+  { id: 1, src: '/images/game1.jpg', fallback: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=400&auto=format&fit=crop' },
+  { id: 2, src: '/images/game2.jpg', fallback: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=400&auto=format&fit=crop' },
+  { id: 3, src: '/images/game3.jpg', fallback: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=400&auto=format&fit=crop' },
+  { id: 4, src: '/images/game4.jpg', fallback: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=400&auto=format&fit=crop' },
+  { id: 5, src: '/images/game5.jpg', fallback: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop' },
+  { id: 6, src: '/images/game6.jpg', fallback: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?q=80&w=400&auto=format&fit=crop' },
+];
 
 export default function ScreenMemoryGame({ onBack }) {
   const [cards, setCards] = useState([]);
@@ -14,10 +21,16 @@ export default function ScreenMemoryGame({ onBack }) {
   const [giftClaimed, setGiftClaimed] = useState(false);
 
   const initGame = () => {
-    const deck = [...ICONS, ...ICONS]
+    const duplicated = [...GAME_IMAGES, ...GAME_IMAGES];
+    const shuffled = duplicated
       .sort(() => Math.random() - 0.5)
-      .map((emoji, index) => ({ id: index, emoji }));
-    setCards(deck);
+      .map((item, index) => ({
+        instanceId: index,
+        imageId: item.id,
+        src: item.src,
+        fallback: item.fallback
+      }));
+    setCards(shuffled);
     setFlipped([]);
     setMatched([]);
     setMoves(0);
@@ -40,7 +53,7 @@ export default function ScreenMemoryGame({ onBack }) {
       setMoves((m) => m + 1);
       const [first, second] = next;
 
-      if (cards[first].emoji === cards[second].emoji) {
+      if (cards[first].imageId === cards[second].imageId) {
         setPoints((p) => p + 50);
         setMatched((prev) => {
           const updated = [...prev, first, second];
@@ -50,7 +63,7 @@ export default function ScreenMemoryGame({ onBack }) {
             setIsCompleted(true);
             confetti({
               particleCount: 140,
-              spread: 80,
+              spread: 85,
               origin: { y: 0.5 },
               colors: ['#FF7597', '#FFD700', '#FFAEC0', '#FFFFFF']
             });
@@ -64,96 +77,88 @@ export default function ScreenMemoryGame({ onBack }) {
     }
   };
 
-  const getMemoryGift = () => {
-    if (points >= 300) {
-      return {
-        tier: "🏆 MASTER QUEEN GIFT",
-        title: "Exclusive Birthday Dessert Party",
-        desc: "Redeemable for waffles, boba, and ice cream on demand for you and your best friends!",
-        coupon: "PARTY-DESSERT-ESHA-500"
-      };
-    } else {
-      return {
-        tier: "🎁 STAR REWARD GIFT",
-        title: "Birthday Wish Grant Voucher",
-        desc: "Redeemable for any sweet snack, coffee, or treat of your choice today!",
-        coupon: "STAR-WISH-ESHA-200"
-      };
-    }
-  };
-
-  const reward = getMemoryGift();
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-[82vh] px-4 py-6 text-center max-w-xl mx-auto animate-screen-in select-none">
+    <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 py-6 text-center max-w-2xl mx-auto animate-screen-in select-none">
       <div className="mb-4">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#8A2846] font-cute">
-          Esha's Party Match Game 🎮
+          Esha's Photo Match Game
         </h2>
         <p className="text-xs sm:text-sm text-[#B3526D] mt-1 font-medium">
-          Pair all matching birthday charms to earn points and claim your prize!
+          Pair all matching photos to earn points and unlock your surprise!
         </p>
       </div>
 
-      <div className="screen-card w-full p-6 relative">
-        <div className="flex justify-between items-center text-xs font-bold text-[#C26B84] mb-4 pb-2 border-b border-[#FFCCD8]">
-          <div className="flex items-center gap-3">
-            <span>MOVES: <strong className="text-[#8A2846]">{moves}</strong></span>
-            <span>MATCHES: <strong className="text-[#FF7597]">{matched.length / 2}/{ICONS.length}</strong></span>
+      <div className="screen-card w-full p-5 sm:p-7 relative bg-gradient-to-b from-white/95 to-[#FFF3F6]">
+        <div className="flex justify-between items-center text-xs font-bold text-[#C26B84] mb-4 pb-3 border-b border-[#FFCCD8]">
+          <div className="flex items-center gap-4">
+            <span className="bg-[#FFEBF0] px-3 py-1 rounded-full">MOVES: <strong className="text-[#8A2846]">{moves}</strong></span>
+            <span className="bg-[#FFEBF0] px-3 py-1 rounded-full">PAIRS: <strong className="text-[#FF7597]">{matched.length / 2}/{GAME_IMAGES.length}</strong></span>
           </div>
-          <div className="flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-[#FFAEC0] shadow-sm">
-            <Star className="w-3.5 h-3.5 fill-[#FFD700] text-[#FFD700]" />
-            <span className="text-[#8A2846] font-bold">{points} PTS</span>
+          <div className="flex items-center gap-1.5 bg-[#FFF0F4] px-3.5 py-1.5 rounded-full border border-[#FFAEC0] shadow-sm">
+            <Star className="w-4 h-4 fill-[#FFD700] text-[#FFD700]" />
+            <span className="text-[#8A2846] font-bold text-sm">{points} PTS</span>
           </div>
         </div>
 
         {!isCompleted ? (
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-4 gap-2.5 sm:gap-3.5 max-w-lg mx-auto">
             {cards.map((card, idx) => {
               const isShown = flipped.includes(idx) || matched.includes(idx);
               return (
                 <button
-                  key={card.id}
+                  key={card.instanceId}
                   onClick={() => handleClick(idx)}
-                  className={`aspect-square rounded-2xl text-2xl sm:text-3xl flex items-center justify-center transition-all duration-300 border-2 cursor-pointer ${
+                  className={`aspect-square rounded-2xl overflow-hidden border-2 transition-all duration-300 relative cursor-pointer ${
                     isShown
-                      ? 'bg-white border-[#FF7597] scale-100 shadow-md rotate-0'
-                      : 'bg-[#FFEBF0] border-[#FFCCD8] hover:scale-105 hover:bg-white'
+                      ? 'border-[#FF7597] scale-100 shadow-md ring-2 ring-[#FFCCD8]'
+                      : 'border-[#FFCCD8] bg-gradient-to-br from-[#FFE5EC] to-[#FFC5D3] hover:scale-105 shadow-sm hover:border-[#FF7597]'
                   }`}
                 >
-                  {isShown ? card.emoji : '🎁'}
+                  {isShown ? (
+                    <img
+                      src={card.src}
+                      alt="Match item"
+                      onError={(e) => { e.target.src = card.fallback; }}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#FFEBF0] via-[#FFDCE5] to-[#FFCCD8]">
+                      <Sparkles className="w-5 h-5 text-[#FF7597]" />
+                      <span className="text-[10px] font-bold text-[#8A2846] mt-1 font-cute tracking-widest">ESHA</span>
+                    </div>
+                  )}
                 </button>
               );
             })}
           </div>
         ) : (
-          <div className="py-2">
+          <div className="py-3">
             <div className="w-16 h-16 bg-[#FFEBF0] rounded-full flex items-center justify-center mx-auto mb-3 border-2 border-[#FFAEC0]">
               <Trophy className="w-8 h-8 text-[#FF7597]" />
             </div>
 
             <h3 className="text-2xl font-bold text-[#8A2846] font-cute">
-              All Matched Perfectly!
+              All Photos Matched!
             </h3>
 
             <div className="inline-flex items-center gap-2 bg-[#FFF0F4] border border-[#FFCCD8] px-4 py-1.5 rounded-full my-3">
               <Sparkles className="w-4 h-4 text-[#FFD700]" />
-              <span className="text-sm font-bold text-[#8A2846]">Score: {points} PTS in {moves} Moves!</span>
+              <span className="text-sm font-bold text-[#8A2846]">Final Score: {points} PTS in {moves} Moves</span>
             </div>
 
             <div className="mt-4 p-5 rounded-2xl bg-white border-2 border-[#FFCCD8] shadow-md text-left relative overflow-hidden">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-[#FF7597] bg-[#FFEBF0] px-2.5 py-1 rounded-full">
-                  {reward.tier}
+                  PHOTO MASTER REWARD
                 </span>
                 <span className="text-2xl">🍰</span>
               </div>
 
               <h4 className="text-base font-bold text-[#8A2846] mt-1 font-cute">
-                {reward.title}
+                Exclusive Birthday Treat Pass
               </h4>
               <p className="text-xs text-[#6B283A] mt-1 leading-relaxed">
-                {reward.desc}
+                Redeemable for waffles, boba, and ice cream on demand anytime you want!
               </p>
 
               {!giftClaimed ? (
@@ -175,10 +180,10 @@ export default function ScreenMemoryGame({ onBack }) {
               ) : (
                 <div className="mt-4 p-3 bg-[#E8F8F0] border border-[#A3E5C1] rounded-xl text-center">
                   <p className="text-[11px] text-[#1E7245] font-bold">
-                    🎉 Voucher Code: <span className="font-mono bg-white px-2 py-0.5 rounded border border-[#A3E5C1]">{reward.coupon}</span>
+                    Voucher Code: <span className="font-mono bg-white px-2 py-0.5 rounded border border-[#A3E5C1]">ESHA-MEMORIES-500</span>
                   </p>
                   <p className="text-[10px] text-[#2F8E5A] mt-0.5">
-                    Save or screenshot this voucher to claim your birthday treat!
+                    Save or screenshot this voucher to claim your treat!
                   </p>
                 </div>
               )}
@@ -199,7 +204,7 @@ export default function ScreenMemoryGame({ onBack }) {
 
       <button
         onClick={onBack}
-        className="mt-6 flex items-center gap-2 btn-pink px-7 py-3 text-sm z-20 cursor-pointer"
+        className="mt-6 flex items-center gap-2 btn-pink px-8 py-3 text-sm z-20 cursor-pointer"
       >
         <Home className="w-4 h-4" />
         <span>Return to Menu</span>

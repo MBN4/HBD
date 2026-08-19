@@ -2,6 +2,219 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Cake Finale ---------- */
+
+@keyframes cakeLayerDrop {
+  0% {
+    transform: translateY(-140px) scale(0.85);
+    opacity: 0;
+  }
+  55% {
+    transform: translateY(10px) scale(1.03);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-4px) scale(0.99);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-cake-board  { animation: cakeLayerDrop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.10s forwards; opacity: 0; }
+.animate-cake-bottom { animation: cakeLayerDrop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s forwards; opacity: 0; }
+.animate-cake-middle { animation: cakeLayerDrop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.25s forwards; opacity: 0; }
+.animate-cake-top    { animation: cakeLayerDrop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.85s forwards; opacity: 0; }
+
+@keyframes candleFall {
+  0% {
+    transform: translateY(var(--fall-from, -560px)) translateX(var(--drift-x, 0px)) rotate(var(--start-rot, 0deg));
+    opacity: 0;
+  }
+  55% { opacity: 1; }
+  78% {
+    transform: translateY(6px) translateX(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes candleFly {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  35% { opacity: 1; }
+  100% {
+    transform: translateY(var(--fall-from, -560px)) translateX(var(--drift-x, 0px)) rotate(var(--end-rot, 0deg));
+    opacity: 0;
+  }
+}
+
+.animate-candle-fall {
+  animation: candleFall 0.55s cubic-bezier(0.3, 1.2, 0.6, 1) forwards;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+.animate-candle-fly {
+  animation: candleFly 0.6s cubic-bezier(0.55, 0, 0.85, 0.4) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes flameIgnite {
+  0% { transform: scale(0) translateY(6px); opacity: 0; }
+  60% { transform: scale(1.3) translateY(-3px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(-2deg);
+    filter: drop-shadow(0 0 6px #FFD700) drop-shadow(0 0 14px #FF9E00);
+  }
+  50% {
+    transform: scale(1.14) rotate(3deg);
+    filter: drop-shadow(0 0 10px #FFE066) drop-shadow(0 0 22px #FF7A00);
+  }
+}
+
+.animate-flame-lit {
+  animation: flameIgnite 0.35s ease-out forwards, flameFlicker 0.75s ease-in-out 0.35s infinite alternate;
+}
+
+@keyframes bubblePop {
+  0% { transform: scale(0.4) translateY(14px); opacity: 0; }
+  65% { transform: scale(1.06) translateY(-3px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes bubblePopOut {
+  0% { transform: scale(1) translateY(0); opacity: 1; }
+  100% { transform: scale(0.5) translateY(-18px); opacity: 0; }
+}
+
+.animate-bubble-in { animation: bubblePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.animate-bubble-out { animation: bubblePopOut 0.4s ease-in forwards; }
+
+@keyframes dimLights {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-dim-lights { animation: dimLights 1.4s ease-in forwards; }
+
+@keyframes cakeGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 22px rgba(255, 215, 0, 0.35)); }
+  50% { filter: drop-shadow(0 0 42px rgba(255, 215, 0, 0.6)); }
+}
+
+.animate-cake-glow { animation: cakeGlowPulse 2.2s ease-in-out infinite; }
+
+@keyframes finalReveal {
+  0% { transform: scale(0.82) translateY(24px); opacity: 0; filter: blur(6px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; filter: blur(0); }
+}
+
+.animate-final-reveal { animation: finalReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+.frosting-scallop {
+  position: absolute;
+  top: -9px;
+  left: -1px;
+  right: -1px;
+  height: 18px;
+  background-image: radial-gradient(circle at 9px 10px, transparent 8.5px, var(--scallop-color) 9px);
+  background-size: 18px 18px;
+  background-repeat: repeat-x;
+  background-position: left top;
+  pointer-events: none;
+}
+
+.candle-stripe {
+  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.55) 0px, rgba(255, 255, 255, 0.55) 2px, transparent 2px, transparent 5px);
+}
+
+.tier-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.12) 22%, rgba(255, 255, 255, 0) 45%);
+  pointer-events: none;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@keyframes cardEntranceSlide {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-plan-1 {
+  animation: cardEntranceSlide 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-plan-2 {
+  animation: cardEntranceSlide 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-plan-3 {
+  animation: cardEntranceSlide 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+  opacity: 0;
+}
+
+@keyframes floatBalloon {
+  0% {
+    transform: translateY(115vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(55vh) translateX(15px) rotate(4deg);
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(-15px) rotate(-4deg);
+    opacity: 0;
+  }
+}
+
+.animate-balloon {
+  animation: floatBalloon linear infinite;
+  will-change: transform, opacity;
+}
+
 @keyframes smoothFlowerRise {
   0% {
     transform: translateY(80px);
@@ -69,31 +282,6 @@
 
 .animate-card-unfold {
   animation: cardUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-letter-title {
-  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
-  opacity: 0;
-}
-
-.animate-letter-p1 {
-  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
-  opacity: 0;
-}
-
-.animate-letter-p2 {
-  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
-  opacity: 0;
-}
-
-.animate-letter-p3 {
-  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
-  opacity: 0;
-}
-
-.animate-letter-footer {
-  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
-  opacity: 0;
 }
 
 .animate-msg-1 {
