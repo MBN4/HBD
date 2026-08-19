@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes smoothFlowerRise {
+  0% {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes smoothMessageRise {
+  0% {
+    transform: translateY(35px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes smoothTextFadeUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes cardUnfold {
+  0% {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes screenFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-screen-in {
+  animation: screenFadeIn 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-bouquet {
+  animation: smoothFlowerRise 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-card-unfold {
+  animation: cardUnfold 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-letter-title {
+  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-letter-p1 {
+  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+  opacity: 0;
+}
+
+.animate-letter-p2 {
+  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+  opacity: 0;
+}
+
+.animate-letter-p3 {
+  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+  opacity: 0;
+}
+
+.animate-letter-footer {
+  animation: smoothTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
+  opacity: 0;
+}
+
+.animate-msg-1 {
+  animation: smoothMessageRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+  opacity: 0;
+}
+
+.animate-msg-2 {
+  animation: smoothMessageRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+  opacity: 0;
+}
+
+.animate-msg-3 {
+  animation: smoothMessageRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+  opacity: 0;
+}
+
+.animate-msg-4 {
+  animation: smoothMessageRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
+  opacity: 0;
+}
+
+.animate-msg-5 {
+  animation: smoothMessageRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.8s forwards;
+  opacity: 0;
+}
+
+.animate-msg-6 {
+  animation: smoothMessageRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 2.1s forwards;
+  opacity: 0;
+}
+
+.btn-pink {
+  @apply bg-[#FF7597] hover:bg-[#FF5C84] text-white font-cute font-bold rounded-full shadow-[0_8px_25px_rgba(255,117,151,0.4)] transition-all duration-300 active:scale-95 hover:scale-105;
+}
+
+.btn-light-pink {
+  @apply bg-[#FFD5DF] hover:bg-[#FFC2D1] text-[#9E3E5B] font-cute font-bold rounded-full shadow-[0_6px_15px_rgba(255,194,209,0.4)] transition-all duration-300 active:scale-95;
+}
+
+.screen-card {
+  @apply bg-[#FFF3F6] border-4 border-[#FFCCD8] rounded-[2.5rem] shadow-[0_20px_60px_rgba(255,142,168,0.25)];
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 22px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px dashed rgba(255, 175, 190, 0.85);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
