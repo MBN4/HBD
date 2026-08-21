@@ -1,18 +1,18 @@
 export const photostripImages = [
-  "/images/photo1.jpg",
-  "/images/photo2.jpg",
-  "/images/photo3.jpg",
-  "/images/photo4.jpg"
+  "/images/memory2.jpeg",
+  "/images/memory3.jpeg",
+  "/images/memory4.jpeg",
+  "/images/memory5.jpeg"
 ];
 
 export const polaroidImages = [
   {
-    url: "/images/photo5.jpg",
+    url: "/images/memory1.jpeg",
     caption: "Birthday Queen",
     rotation: "-rotate-3"
   },
   {
-    url: "/images/photo6.jpg",
+    url: "/images/memory6.jpeg",
     caption: "Another Year Fabulous",
     rotation: "rotate-3"
   }

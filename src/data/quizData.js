@@ -58,5 +58,17 @@ export const quizQuestions = [
     ],
     correct: 3,
     reaction: "May this year be the most magical and rewarding one yet!"
+  },
+  {
+    id: 6,
+    question: "What is the best thing about you?",
+    options: [
+      "Eyes",
+      "Face",
+      "Hairs",
+      "Your Heart"
+    ],
+    correct: 'all',
+    reaction: "Correct! But your eyes... damn Esh 😍"
   }
 ];

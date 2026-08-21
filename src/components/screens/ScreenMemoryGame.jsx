@@ -3,12 +3,12 @@ import { Home, RotateCcw, Trophy, Gift, Star, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const GAME_IMAGES = [
-  { id: 1, src: '/images/game1.jpg', fallback: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=400&auto=format&fit=crop' },
-  { id: 2, src: '/images/game2.jpg', fallback: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=400&auto=format&fit=crop' },
-  { id: 3, src: '/images/game3.jpg', fallback: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=400&auto=format&fit=crop' },
-  { id: 4, src: '/images/game4.jpg', fallback: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=400&auto=format&fit=crop' },
-  { id: 5, src: '/images/game5.jpg', fallback: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop' },
-  { id: 6, src: '/images/game6.jpg', fallback: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?q=80&w=400&auto=format&fit=crop' },
+  { id: 1, emoji: '🎂' },
+  { id: 2, emoji: '🎈' },
+  { id: 3, emoji: '🎁' },
+  { id: 4, emoji: '🎉' },
+  { id: 5, emoji: '🥳' },
+  { id: 6, emoji: '🐧' },
 ];
 
 export default function ScreenMemoryGame({ onBack }) {
@@ -27,8 +27,7 @@ export default function ScreenMemoryGame({ onBack }) {
       .map((item, index) => ({
         instanceId: index,
         imageId: item.id,
-        src: item.src,
-        fallback: item.fallback
+        emoji: item.emoji
       }));
     setCards(shuffled);
     setFlipped([]);
@@ -81,10 +80,10 @@ export default function ScreenMemoryGame({ onBack }) {
     <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 py-6 text-center max-w-2xl mx-auto animate-screen-in select-none">
       <div className="mb-4">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#8A2846] font-cute">
-          Esha's Photo Match Game
+          Esha's Birthday Match Game
         </h2>
         <p className="text-xs sm:text-sm text-[#B3526D] mt-1 font-medium">
-          Pair all matching photos to earn points and unlock your surprise!
+          Pair all matching emojis to earn points and unlock your surprise!
         </p>
       </div>
 
@@ -115,12 +114,9 @@ export default function ScreenMemoryGame({ onBack }) {
                   }`}
                 >
                   {isShown ? (
-                    <img
-                      src={card.src}
-                      alt="Match item"
-                      onError={(e) => { e.target.src = card.fallback; }}
-                      className="w-full h-full object-cover"
-                    />
+                    <div className="w-full h-full flex items-center justify-center text-3xl sm:text-4xl">
+                      {card.emoji}
+                    </div>
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#FFEBF0] via-[#FFDCE5] to-[#FFCCD8]">
                       <Sparkles className="w-5 h-5 text-[#FF7597]" />
@@ -138,7 +134,7 @@ export default function ScreenMemoryGame({ onBack }) {
             </div>
 
             <h3 className="text-2xl font-bold text-[#8A2846] font-cute">
-              All Photos Matched!
+              All Pairs Matched!
             </h3>
 
             <div className="inline-flex items-center gap-2 bg-[#FFF0F4] border border-[#FFCCD8] px-4 py-1.5 rounded-full my-3">
@@ -149,7 +145,7 @@ export default function ScreenMemoryGame({ onBack }) {
             <div className="mt-4 p-5 rounded-2xl bg-white border-2 border-[#FFCCD8] shadow-md text-left relative overflow-hidden">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-[#FF7597] bg-[#FFEBF0] px-2.5 py-1 rounded-full">
-                  PHOTO MASTER REWARD
+                  MATCH MASTER REWARD
                 </span>
                 <span className="text-2xl">🍰</span>
               </div>

@@ -3,7 +3,7 @@ import { Home, Sparkles } from 'lucide-react';
 import { photostripImages, polaroidImages } from '../../data/galleryData';
 
 export default function ScreenMemories({ onBack }) {
-  const fallbackImg = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop";
+  const fallbackImg = "/images/memory1.jpeg";
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 py-6 text-center max-w-5xl mx-auto animate-screen-in select-none">

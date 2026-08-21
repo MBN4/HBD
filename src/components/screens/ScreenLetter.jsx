@@ -3,7 +3,7 @@ import { Home, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function ScreenLetter({ onBack }) {
-  const fullTitle = "My Love, Esha,";
+  const fullTitle = "My Dear, Esha,";
   const fullP1 = "I feel so lucky to walk through life with you by my side. Even the smallest moments turn into sweet memories just because you are there.";
   const fullP2 = "You make ordinary days feel deeply meaningful and bright. Your laughter brings pure peace into my heart.";
   const fullP3 = "I hope this brings you all the warmth, joy, and smiles that your heart quietly wishes for. You deserve so much more than you realize.";

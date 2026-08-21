@@ -15,14 +15,12 @@ export default function ScreenBouquet({ onBack }) {
       </div>
 
       <div className="relative w-full max-w-4xl h-[480px] sm:h-[540px] my-auto flex items-center justify-center">
-        <div className="relative w-72 sm:w-88 md:w-[380px] h-[360px] sm:h-[420px] bg-[#FFD1DC] rounded-[2.5rem] p-4 sm:p-6 shadow-[0_20px_50px_rgba(255,142,168,0.3)] border-4 border-white flex items-center justify-center animate-bouquet">
-          <div className="w-full h-full flex items-center justify-center overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?q=80&w=800&auto=format&fit=crop"
-              alt="Birthday Bouquet For Esha"
-              className="w-full h-full object-contain filter drop-shadow-xl hover:scale-105 transition-transform duration-700"
-            />
-          </div>
+        <div className="relative w-80 sm:w-[440px] md:w-[500px] h-[440px] sm:h-[500px] flex items-center justify-center animate-bouquet">
+          <img
+            src="/images/flower.png"
+            alt="Birthday Bouquet For Esha"
+            className="w-full h-full object-contain filter drop-shadow-xl hover:scale-105 transition-transform duration-700"
+          />
         </div>
 
         <div className="absolute top-[8%] left-[2%] sm:left-[6%] md:left-[8%] max-w-[200px] sm:max-w-[230px] bg-white/95 border border-[#FFCCD8] rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-[11px] sm:text-xs text-[#8A2846] font-semibold shadow-lg text-left animate-msg-1">
