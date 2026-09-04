@@ -16,11 +16,11 @@ export default function App() {
   const [screen, setScreen] = useState('intro');
 
   return (
-    <div className="relative min-h-screen w-full bg-[#FFE6EC] flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+    <div className="relative min-h-screen w-full bg-[#FFE6EC] flex flex-col items-center justify-center p-3 sm:p-6 overflow-x-hidden overflow-y-auto">
       <FloatingBalloons />
       <MusicButton />
 
-      <main className="relative z-10 w-full max-w-5xl">
+      <main className="relative z-10 w-full max-w-5xl my-auto py-2 sm:py-6">
         {screen === 'intro' && <ScreenIntro onAccept={() => setScreen('hub')} />}
         {screen === 'hub' && <ScreenHub onNavigate={(dest) => setScreen(dest)} />}
         {screen === 'bouquet' && <ScreenBouquet onBack={() => setScreen('hub')} />}

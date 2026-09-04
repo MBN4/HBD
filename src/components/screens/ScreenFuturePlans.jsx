@@ -50,7 +50,7 @@ export default function ScreenFuturePlans({ onNext, onBack }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 py-6 text-center max-w-4xl mx-auto animate-screen-in select-none my-auto">
+    <div className="flex flex-col items-center justify-center w-full px-3 sm:px-6 py-6 text-center max-w-4xl mx-auto animate-screen-in select-none">
       <div className="relative w-full max-w-3xl bg-[#FFF5F7] border-4 border-[#FFD0DC] rounded-[2.5rem] p-6 sm:p-10 shadow-[0_20px_50px_rgba(255,142,168,0.25)] flex flex-col items-center">
         <div className="mb-8">
           <h2 className="text-3xl sm:text-5xl font-cursive font-bold text-[#8A2846] leading-tight">

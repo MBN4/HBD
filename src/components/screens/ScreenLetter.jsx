@@ -76,7 +76,7 @@ export default function ScreenLetter({ onBack }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[82vh] px-4 py-6 text-center max-w-3xl mx-auto animate-screen-in select-none">
+    <div className="flex flex-col items-center justify-center w-full px-3 sm:px-6 py-6 text-center max-w-3xl mx-auto animate-screen-in select-none">
       <div className="relative w-full p-8 sm:p-12 rounded-[2.5rem] bg-[#FFFBF0] border-4 border-[#FFCCD8] shadow-[0_25px_60px_rgba(255,142,168,0.3)] text-left min-h-[460px] flex flex-col justify-between">
         <div className="absolute top-5 right-6 text-2xl animate-pulse">🌸</div>
         <div className="absolute top-5 left-6 text-2xl animate-pulse">🌿</div>

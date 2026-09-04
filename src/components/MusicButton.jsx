@@ -37,10 +37,11 @@ export default function MusicButton() {
       />
       <button
         onClick={toggleMusic}
-        className="fixed top-5 right-5 z-50 flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFAEC0] hover:bg-[#FF94AB] text-white text-xs font-bold shadow-md hover:scale-105 transition-transform cursor-pointer"
+        className="fixed top-3 right-3 sm:top-5 sm:right-5 z-50 flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#FFAEC0] hover:bg-[#FF94AB] text-white text-[11px] sm:text-xs font-bold shadow-md hover:scale-105 transition-transform cursor-pointer"
       >
         <Music className="w-3.5 h-3.5" />
-        <span>{playing ? "Playing Birthday Song" : "Play Birthday Song 🎵"}</span>
+        <span className="hidden sm:inline">{playing ? "Playing Birthday Song" : "Play Birthday Song 🎵"}</span>
+        <span className="sm:hidden">{playing ? "Playing 🎵" : "Play 🎵"}</span>
         {playing ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5 opacity-70" />}
       </button>
     </>

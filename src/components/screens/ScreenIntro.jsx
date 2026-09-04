@@ -21,7 +21,7 @@ export default function ScreenIntro({ onAccept }) {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[85vh] px-4 text-center select-none animate-screen-in">
+    <div className="relative flex flex-col items-center justify-center w-full px-3 sm:px-6 py-6 text-center select-none animate-screen-in">
       <div className="w-72 sm:w-96 md:w-[420px] aspect-[4/3] mb-2 animate-float-slow flex items-center justify-center relative">
         <video
           autoPlay

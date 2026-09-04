@@ -83,17 +83,17 @@ export default function ScreenCakeFinale({ onBack }) {
   const lit = stage === 'lit';
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[88vh] w-full px-4 text-center select-none overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center w-full px-3 sm:px-6 py-6 text-center select-none overflow-x-hidden overflow-y-auto">
       {lit && (
         <div className="fixed inset-0 z-0 bg-black/60 pointer-events-none animate-dim-lights" />
       )}
 
-      <div className="relative z-10 flex flex-col items-center w-full">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-xl mx-auto">
         {showJoke && (
-          <div className="absolute -top-2 sm:top-2 inset-x-0 z-30 flex justify-center px-6">
+          <div className="absolute -top-4 sm:top-0 inset-x-0 z-30 flex justify-center px-4">
             <div
               onClick={dismissJoke}
-              className={`relative max-w-[15rem] sm:max-w-sm p-4 bg-[#FFF0F3] border-[3px] border-[#FF7597] rounded-3xl shadow-[0_15px_40px_rgba(255,117,151,0.4)] text-[#8A2846] font-bold text-xs sm:text-base cursor-pointer ${
+              className={`relative max-w-[16rem] sm:max-w-sm p-3.5 sm:p-4 bg-[#FFF0F3] border-[3px] border-[#FF7597] rounded-3xl shadow-[0_15px_40px_rgba(255,117,151,0.4)] text-[#8A2846] font-bold text-xs sm:text-base cursor-pointer ${
                 stage === 'joke' ? 'animate-bubble-in' : 'animate-bubble-out'
               }`}
             >
@@ -109,12 +109,12 @@ export default function ScreenCakeFinale({ onBack }) {
         )}
 
         <div
-          className={`relative flex flex-col items-center justify-end h-[380px] sm:h-[420px] w-full max-w-md mt-20 sm:mt-16 mb-4 transition-transform duration-700 ${
-            lit ? 'animate-cake-glow scale-[1.03]' : ''
+          className={`relative flex flex-col items-center justify-end h-[360px] sm:h-[420px] w-full max-w-md mt-16 sm:mt-16 mb-4 transition-transform duration-700 ${
+            lit ? 'animate-cake-glow scale-[1.02]' : ''
           }`}
         >
           <div
-            className="relative w-[180px] h-16 bg-gradient-to-br from-[#FFF6F8] via-[#FFE1E8] to-[#FFD9E4] rounded-t-3xl border-[3px] border-white shadow-md z-10 flex items-center justify-center animate-cake-top"
+            className="relative w-[160px] sm:w-[180px] h-16 bg-gradient-to-br from-[#FFF6F8] via-[#FFE1E8] to-[#FFD9E4] rounded-t-3xl border-[3px] border-white shadow-md z-10 flex items-center justify-center animate-cake-top"
             style={{ '--scallop-color': '#FFE1E8' }}
           >
             {showExcess && (
@@ -177,7 +177,7 @@ export default function ScreenCakeFinale({ onBack }) {
           </div>
 
           <div
-            className="relative w-[240px] h-20 bg-gradient-to-br from-[#FFD3DE] via-[#FFB3C6] to-[#FFA5BC] rounded-t-3xl border-[3px] border-white shadow-lg z-0 -mt-2 animate-cake-middle flex items-center justify-center"
+            className="relative w-[210px] sm:w-[240px] h-20 bg-gradient-to-br from-[#FFD3DE] via-[#FFB3C6] to-[#FFA5BC] rounded-t-3xl border-[3px] border-white shadow-lg z-0 -mt-2 animate-cake-middle flex items-center justify-center"
             style={{ '--scallop-color': '#FFB3C6' }}
           >
             <div className="tier-shine" />
@@ -186,7 +186,7 @@ export default function ScreenCakeFinale({ onBack }) {
           </div>
 
           <div
-            className="relative w-[300px] sm:w-[320px] h-24 bg-gradient-to-br from-[#FF87A3] via-[#FF5C84] to-[#F03A69] rounded-t-3xl border-4 border-white shadow-2xl -mt-2 animate-cake-bottom flex items-center justify-center"
+            className="relative w-[270px] sm:w-[320px] h-24 bg-gradient-to-br from-[#FF87A3] via-[#FF5C84] to-[#F03A69] rounded-t-3xl border-4 border-white shadow-2xl -mt-2 animate-cake-bottom flex items-center justify-center"
             style={{ '--scallop-color': '#FF5C84' }}
           >
             <div className="tier-shine" />
@@ -196,8 +196,8 @@ export default function ScreenCakeFinale({ onBack }) {
             </span>
           </div>
 
-          <div className="relative w-[340px] sm:w-[360px] h-5 bg-gradient-to-b from-white via-[#F5F5F5] to-[#DCDCDC] rounded-full shadow-2xl -mt-1 border border-white animate-cake-board" />
-          <div className="w-[300px] sm:w-[320px] h-3 rounded-full bg-black/20 blur-md -mt-1 animate-cake-board" />
+          <div className="relative w-[295px] sm:w-[360px] h-5 bg-gradient-to-b from-white via-[#F5F5F5] to-[#DCDCDC] rounded-full shadow-2xl -mt-1 border border-white animate-cake-board" />
+          <div className="w-[270px] sm:w-[320px] h-3 rounded-full bg-black/20 blur-md -mt-1 animate-cake-board" />
         </div>
 
         {lit && (

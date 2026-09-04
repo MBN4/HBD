@@ -98,7 +98,7 @@ export default function ScreenHub({ onNavigate }) {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 py-6 text-center max-w-5xl mx-auto animate-screen-in select-none">
+    <div className="flex flex-col items-center justify-center w-full px-3 sm:px-6 py-6 text-center max-w-5xl mx-auto animate-screen-in select-none">
       <div className="mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/70 border border-[#FFCCD8] text-[11px] uppercase tracking-widest text-[#B3526D] font-bold mb-2 shadow-sm">
           <span>✨ Made Just For You ✨</span>

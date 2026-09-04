@@ -39,7 +39,7 @@ export default function ScreenUnlock({ onUnlocked, onBack }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 text-center max-w-lg mx-auto animate-screen-in select-none my-auto">
+    <div className="flex flex-col items-center justify-center w-full px-3 sm:px-6 py-6 text-center max-w-lg mx-auto animate-screen-in select-none">
       <div className="w-28 h-28 sm:w-36 sm:h-36 mb-2 animate-float-slow flex items-center justify-center">
       </div>
 

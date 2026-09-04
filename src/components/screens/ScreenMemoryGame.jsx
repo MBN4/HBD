@@ -77,7 +77,7 @@ export default function ScreenMemoryGame({ onBack }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 py-6 text-center max-w-2xl mx-auto animate-screen-in select-none">
+    <div className="flex flex-col items-center justify-center w-full px-3 sm:px-6 py-6 text-center max-w-2xl mx-auto animate-screen-in select-none">
       <div className="mb-4">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#8A2846] font-cute">
           Esha's Birthday Match Game
